@@ -18,7 +18,7 @@ void insertion_sort_list(listint_t **list)
 
 	print_list(temp);
 
-	while (current)  /* iterate down the list while i < length of list */
+	while (current != NULL)  /* iterate down the list while i < length of list */
 	{
 		current = current->next; /* x = A[i] / j = i -1 */
 		/* start at j and temp->n < temp->next->n */
@@ -26,7 +26,7 @@ void insertion_sort_list(listint_t **list)
 		{
 			/* insert the temp node at current if temp-n < current->n */
 			/* case where temp->next == NULL */
-			print_list(current);
+			print_list(*list);
 		}
 		temp = current;
 	}
