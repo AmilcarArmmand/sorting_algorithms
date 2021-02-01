@@ -9,8 +9,8 @@
  */
 void selection_sort(int *array, size_t size)
 {
-	unsigned int i, j;
-	int minimum, temp;
+	size_t i, j, temp;
+	size_t minimum;
 
 	if (array == NULL || size < 2)
 		return;
@@ -21,13 +21,17 @@ void selection_sort(int *array, size_t size)
 		/* check for same values */
 		for (j = i + 1; j < size ; j++)
 		{
+			/* if element is less, set to new minumum */
 			if (array[minimum] > array[j])
 				minimum = j;
 		}
-		/* swap elements */
-		temp = array[i];
-		array[i] = array[minimum];
-		array[minimum] = temp;
+		if (minimum != i)
+		{
+			/* swap elements */
+			temp = array[i];
+			array[i] = array[minimum];
+			array[minimum] = temp;
+		}
 		print_array(array, size);
 	}
 }
