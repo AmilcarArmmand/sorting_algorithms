@@ -16,16 +16,24 @@ void insertion_sort_list(listint_t **list)
 	current = *list;
 	temp = *list;
 
-	print_list(temp);
-
-	while (current != NULL)  /* iterate down the list while i < length of list */
+	while (current != NULL)  /* step down the list while i < size */
 	{
-		current = current->next; /* x = A[i] / j = i -1 */
-		/* start at j and temp->n < temp->next->n */
-		while (temp->prev && temp->n < temp->prev->n)
+		current = current->next;
+		/* start at list->next and check for temp->n < temp->next->n */
+		while ((temp->prev != NULL) && (temp->n < temp->prev->n))
 		{
-			/* insert the temp node at current if temp-n < current->n */
-			/* case where temp->next == NULL */
+			temp->prev->next = temp->next;
+			if (temp->next != NULL)
+				temp->next->prev = temp->prev;
+
+			temp->next = temp->prev;
+			temp->prev = temp->next->prev;
+
+			if (temp->prev != NULL)
+				temp->prev->next = temp;
+			else
+				*list = temp;
+			temp->next->prev = temp;
 			print_list(*list);
 		}
 		temp = current;
