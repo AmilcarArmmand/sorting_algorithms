@@ -12,9 +12,13 @@ void selection_sort(int *array, size_t size)
 	unsigned int i, j;
 	int minimum, temp;
 
+	if (array == NULL || size < 2)
+		return;
+
 	for (i = 0; i < size - 1; i++)
 	{
 		minimum = i;
+		/* check for same values */
 		for (j = i + 1; j < size ; j++)
 		{
 			if (array[minimum] > array[j])
