@@ -17,14 +17,17 @@ void shell_sort(int *array, size_t size)
 	for (gap = 1; gap < ((int)size / 3);)
 		gap = gap * 3 + 1;
 
-	for (i = gap; i < (int)size; i++)
+	for (; gap > 0; gap /= 3)
 	{
-		temp = array[i];
-		for (j = i; j >= gap && array[j - gap] > temp; j -= gap)
+		for (i = gap; i < (int)size; i++)
 		{
-			array[j] = array[j - gap];
+			temp = array[i];
+			for (j = i; j >= gap && array[j - gap] > temp; j -= gap)
+			{
+				array[j] = array[j - gap];
+			}
+			array[j] = temp;
+			print_array(array, size);
 		}
-		array[j] = temp;
-		print_array(array, size);
 	}
 }
